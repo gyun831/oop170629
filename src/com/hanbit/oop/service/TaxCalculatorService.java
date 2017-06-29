@@ -1,7 +1,7 @@
 package com.hanbit.oop.service;
 
 public class TaxCalculatorService {
-	public double execute(String name,int pay){
+	public double execute(int pay){
 	double rat = 0;
 
 	

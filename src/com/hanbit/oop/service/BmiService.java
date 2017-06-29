@@ -1,10 +1,18 @@
 package com.hanbit.oop.service;
 
 public class BmiService{
-	public String calcBMI(double height,double weight){
-		double bmi = weight/(height*height);
-		String state="";
-		
+	private double height,weight,bmi;
+	private String state;
+	public void setHeight(double height){
+		this.height = height;
+	}
+	public void setWeight(double weight){
+		this.weight = weight;
+	}
+	public void setBmi(){
+		this.bmi = weight/(height*height);
+	}
+	public void setState(){
 		if(bmi>=30){
 			state="비만";
 		}
@@ -17,8 +25,20 @@ public class BmiService{
 		else{
 			state="저체중";
 		}
+	}
+	public double getHeight(){
+		return this.height;
+	}
+	public double getWeight(){
+		return this.weight;
+	}
+	public double getBmi(){
+		return this.bmi;
+	}
+	public String getState(){
 		return state;
 	}
+
 }
 
 	

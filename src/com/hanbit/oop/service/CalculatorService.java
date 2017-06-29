@@ -1,39 +1,77 @@
 package com.hanbit.oop.service;
 
 public class CalculatorService {
-	public String calcBMI(double height,double weight){
-		double bmi = weight/(height*height);
-		String state="";
-		if(bmi>=30){
-			state="비만";
+	private String num1,num2,result,opcode;
+	
+	
+	public void setNum1(String num1){
+		this.num1 = num1;
+	}
+	public void setNum2(String num2){
+		this.num2 = num2;
+	}
+	public String getNum1(){
+		return num1;
+	}
+	public void setOpcode(String opcode){
+		this.opcode = opcode;
+	}
+	public String getOpcode(){
+		return opcode;
+	}
+	public void setResult(){
+		if(opcode.equals("+")){
+			result = String.valueOf(Integer.parseInt(num1)+Integer.parseInt(num2));
 		}
-		else if(bmi>=25){
-			state="과체중";
+		else if(opcode.equals("-")){
+			result = String.valueOf(Integer.parseInt(num1)-Integer.parseInt(num2));
 		}
-		else if(bmi>=18.5){
-			state="정상";
+		else if(opcode.equals("*")){
+			result = String.valueOf(Integer.parseInt(num1)*Integer.parseInt(num2));
 		}
-		else{
-			state="저체중";
+		else if(opcode.equals("/")){
+			result = String.valueOf(Integer.parseInt(num1)/Integer.parseInt(num2));
 		}
-		return state;
 	}
-	public String calcPlus(String a, String b){
-		return String.valueOf(Integer.parseInt(a)+Integer.parseInt(b));
+	public String getResult(){
+		return result;
 	}
-	public String calcMinus(String a, String b){
-		return String.valueOf(Integer.parseInt(a)-Integer.parseInt(b));
-	}
-	public String calcDivid(String a, String b){
-		return String.valueOf(Integer.parseInt(a)/Integer.parseInt(b));
-	}
-	public String calcMulti(String a, String b){
-		return String.valueOf(Integer.parseInt(a)*Integer.parseInt(b));
-	}
+
 	public String calcTax(String pay){
-		return 
+		return pay; 
 	}
 	public String calcTime(String sec){
-		return 
+		return sec;
 	}
 }
+
+
+
+
+
+/*
+ 	public void setPlus(){
+		this.plus = String.valueOf(Integer.parseInt(num1)+Integer.parseInt(num2));
+	}
+	public String getPlus(){
+		return plus;
+	}	
+	public void setMinus(){
+		this.minus = String.valueOf(Integer.parseInt(num1)-Integer.parseInt(num2));
+	}
+	public String getMinus(){
+		return minus;
+	}
+	public void setDivid(){
+		this.divid = String.valueOf(Integer.parseInt(num1)/Integer.parseInt(num2));
+	}
+	public String getDivid(){
+		return divid;
+	}
+	public void setMulti(){
+		this.multi = String.valueOf(Integer.parseInt(num1)*Integer.parseInt(num2));
+	}
+	public String getMulti(){
+		return multi;
+	}
+ */
