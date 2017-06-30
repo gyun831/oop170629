@@ -23,7 +23,7 @@ public class CalendarService {
 	public int getDate(){
 		return date;
 	}
-	public void setDay(int day){
+	public void setDay(String day){
 		this.day = day;
 	}
 	public String getDay(){

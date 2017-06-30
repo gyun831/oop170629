@@ -1,30 +1,15 @@
 package com.hanbit.oop.service;
 
+import com.hanbit.opp.domain.MemberBean;
+
 public class MemberService {
-	private String id,pw,gender,ssn,name,login;
-	private int age;
-	
-	public void setId(String id){
-		this.id = id;
+	MemberBean session;
+	public MemberService(){
+		session=new MemberBean();
 	}
-	public String getId(){
-		return id;
-	}
-	public void setPw(String pw){
-		this.pw = pw;
-	}
-	public String GetPw(){
-		return pw;
-	}
-	public void setName(String name){
-		this.name = name;
-	}
-	public String getName(){
-		return name;
-	}
-	public void setGender(){
-		char ch = ssn.charAt(7); //ssn문자열에 7번째문자
-		switch(ch){
+	public String getGender(MemberBean member){
+		String gender = "";
+		switch(member.getSsn().charAt(7)){
 			case '1': 
 			case '3':
 				gender = "남";
@@ -43,43 +28,28 @@ public class MemberService {
 				gender = "FAIL";
 				break;
 		}
-	}
-	public String getGender(){
 		return gender;
 	}
-	public void setAge(){
-		String sYear = ssn.substring(0,2);
-		int year = Integer.parseInt(sYear);
-		this.age = ((17-year)>=0)?2017-(year+2000)+1:2017-(year+1900)+1;
+	public String getAge(MemberBean member){
+		return String.valueOf(((17-Integer.parseInt(member.getSsn().substring(0,2)))>=0)?2017-(Integer.parseInt(member.getSsn().substring(0,2))+2000)+1:2017-(Integer.parseInt(member.getSsn().substring(0,2))+1900)+1);
 	}
-	public int getAge(){
-		return age;
+	public String join(MemberBean member){
+		//세션에 회원가입시 입력한 정보를 저장하는 소스
+		session=member;
+		return "환영합니다";
 	}
-	public void setSsn(String ssn){
-		this.ssn = ssn;
-	}
-	public String getSsn(){
-		return ssn;
-	}
-	public void setLogin(String id, String pw){
-		if(!id.equals(this.id)){
+	public String Login(MemberBean member){
+		String login="";
+		if(!session.getId().equals(member.getId())){
 			login="ID틀림";
 		}
-		else if(pw.equals(this.pw)){
-			login=toString();
+		else if(session.getPw().equals(member.getPw())){
+			login="환영합니다."+session.getName()+"("+getGender(session)+"\t"+getAge(session)+"세)";
 		}
 		else{
 			login="PW틀림";
 		}
-	}
-	public String getLogin(){
 		return login;
 	}
-	public String toString(){
-		setAge();
-		setGender();
-		return "Welcome\t"+name+"("+gender+","+age+"세)";
-	}
-
 }
 
