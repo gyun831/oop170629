@@ -1,7 +1,7 @@
 package com.hanbit.opp.domain;
 
 public class MemberBean {
-private String id,pw,ssn,name;
+private String id,pw,ssn,name,result;
 	
 	public void setId(String id){
 		this.id = id;
@@ -28,7 +28,7 @@ private String id,pw,ssn,name;
 		return ssn;
 	}
 	public String toString(){
-		return "";
+		return "회원[name="+name+",id="+id+",pw="+pw+",ssn="+ssn+"]\n";
 	}
 
 }

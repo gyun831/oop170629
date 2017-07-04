@@ -1,12 +1,13 @@
 package com.hanbit.oop.controller;
 
 import com.hanbit.oop.service.GradeService;
+import com.hanbit.oop.serviceImpl.GradeServiceImpl;
 import com.hanbit.opp.domain.GradeBean;
 import javax.swing.*;
 
 public class GradeController {
 	public static void main(String[] args) {
-		GradeService grade = new GradeService();
+		GradeService grade = new GradeServiceImpl();
 		GradeBean g = new GradeBean();
 
 		while (true) {

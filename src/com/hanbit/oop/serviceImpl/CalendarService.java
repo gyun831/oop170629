@@ -1,4 +1,4 @@
-package com.hanbit.oop.service;
+package com.hanbit.oop.serviceImpl;
 
 public class CalendarService {
 	//field에는 값이 들어가지 않는다.
