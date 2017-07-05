@@ -8,12 +8,11 @@ import com.hanbit.opp.domain.MemberBean;
 
 public class AdminController {
 	public static void main(String[]args){
-		String sCount = JOptionPane.showInputDialog("관리자님 총회원수를 입력해주세요");
-		AdminService service = new AdminServiceImpl(sCount);
+		AdminService service = new AdminServiceImpl();
 		MemberBean member = null;
 		
 		while(true){
-			switch(JOptionPane.showInputDialog("0.종료 1.회원추가 2.회원수 3.회원목록 4.회원검색(ID) 5.회원검색(이름) 6.회원수정")){
+			switch(JOptionPane.showInputDialog("0.종료 1.회원추가 2.회원수 3.회원목록 4.회원검색(ID) 5.회원검색(이름) 6.회원수정 7.회원삭제")){
 			case "0":
 				JOptionPane.showMessageDialog(null, "종료");
 				return;
@@ -37,7 +36,17 @@ public class AdminController {
 				JOptionPane.showMessageDialog(null, service.findById(JOptionPane.showInputDialog("조회하려는 ID")));
 				break;
 			case "5":
-				JOptionPane.showMessageDialog(null,service.findByName(JOptionPane.showInputDialog("조회하려는 이름")));
+				String name = JOptionPane.showInputDialog("조회하려는 이름");
+				MemberBean[] members = service.findByName(name);
+				String result = "";
+				if(members.length==0){
+					result = "조회할 이름이 없습니다.";
+				}else{
+					for(int i=0;i<members.length;i++){
+						result+=members[i].toString();
+					}
+				}
+				JOptionPane.showMessageDialog(null,result);
 				break;
 			case "6":
 				member = new MemberBean();
@@ -46,6 +55,10 @@ public class AdminController {
 				member.setPw(ar[1]);
 				service.updatePW(member);
 				JOptionPane.showMessageDialog(null, "비밀번호 수정완료");
+				break;
+			case "7":
+				service.delete(JOptionPane.showInputDialog("삭제하려는 ID"));
+				JOptionPane.showMessageDialog(null, "삭제완료");
 			default:
 				break;
 			}

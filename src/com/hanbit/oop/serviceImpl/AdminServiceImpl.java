@@ -9,24 +9,24 @@ public class AdminServiceImpl implements AdminService{
 	int cnt;
 	MemberBean member;
 	MemberBean[] members;
-	public AdminServiceImpl(String sCount){
+	public AdminServiceImpl(){
 		cnt = 0;
 		member = new MemberBean();
-		members = new MemberBean[Integer.parseInt(sCount)];
+		members = new MemberBean[cnt];
 		
 	}
 	@Override
 	public void addMember(MemberBean member) {
-		members[cnt] = member;
-		//for(int i=0;i<(cnt+1);i++){
-			//System.out.println(members[i].toString());
-		//}
-		cnt++;
+		if(cnt==members.length){
+			MemberBean[] temp=new MemberBean[cnt+1];
+			System.arraycopy(members, 0, temp, 0, cnt);
+			members=temp;
+		}
+		members[cnt++] = member;
 	}
 	@Override
 	public MemberBean[] getMembers(){
 		return members;
-
 	}
 	@Override
 	public int countMembers() {
@@ -64,12 +64,25 @@ public class AdminServiceImpl implements AdminService{
 		return find;
 	}
 	@Override
-	public void updatePW(MemberBean member) {
-		for(int i=0; i<cnt;i++){
-			if(member.getId().equals(members[i].getId())){
-				members[i].setPw(member.getPw());
-				break;
-			}
-		}
+	public void updatePW(MemberBean param) {
+		member = findById(param.getId());
+		member.setPw(param.getPw());
 	}
+	@Override
+	public void delete(String id) {
+		for(int i=0; i<cnt;i++){
+			if(id.equals(members[i].getId())){
+				//for(;i<cnt-1;i++){
+					//members[i]=members[i+1];
+					//cnt--;
+				//}
+						members[i]=members[cnt-1];
+						members[cnt-1]=null;
+						cnt--;
+					}
+					break;
+				}
+			}
 }
+
+
